@@ -1,22 +1,52 @@
 #include<iostream>
+#include<string.h>
 using namespace std;
 //Mensaje de bienvenida al juego.
 void bienvenida(){ 
 printf("Bienvenido al Juego de SIMON ver. 1.0.");
 }
 //Inicio del juego, pide nombre y dificultad al usuario.
-bool inicioJuego (char nombre[],char diff){
-    char enter;
-    printf("\nIngrese su nombre (fin=fin del Juego): ");
-    scanf("%9s", nombre);
-    
-    do{
-        printf("\nIngrese nivel del Juego (p, i, a): ");
-        scanf(" %c", &diff);
-    }while(diff!='p'&&diff!='P'&&diff!='i'&&diff!='I'&&diff!='a'&&diff!='A');
+bool inicioJuego (char nombre[], char *diff){
+    int i=0;
+    char enter, c; //c es para ver si es un enter o espacio
+    bool nombreOk = false;
+    do
+    {
+        printf("\nIngrese su nombre (fin=fin del Juego): ");
+        while ((c = getchar()) != '\n'){
+            {   
+                if(i < 9){
+                    nombre[i]= c;
+                    i++;
+                }
+            }
+        if (i == 0) {
+            printf("Error: No ingresó nada. Vuelva a intentarlo.\n");
+        } else if (strcmp(nombre, "fin") == 0) {
+            return false;
+        } else {
+            nombreOk = true;
+        }
+    }
+    } while (!nombreOk);
 
     do{
-        printf("\n Pulse <enter> para comenzar el juego: ");
+        printf("\nIngrese nivel del Juego (p, i, a): ");
+        scanf(" %c", diff);
+            if (*diff!='p' && *diff!='P' &&
+           *diff!='i' && *diff!='I' &&
+           *diff!='a' && *diff!='A')
+            {
+                printf("Nivel del juego no es válido. Vuela a intentarlo.");
+            }
+            
+    }while(*diff!='p' && *diff!='P' &&
+           *diff!='i' && *diff!='I' &&
+           *diff!='a' && *diff!='A');
+
+    do{
+        printf("\nPulse <enter> para comenzar el juego");
+        getchar();
         enter = getchar();
     }while(enter!='\n');
 
