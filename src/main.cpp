@@ -8,10 +8,10 @@ using namespace std;
 int main (int argc, char *argv[]) {
     srand(time(NULL));
     bool inicio = true, gano;
-    char nombre[11], leaderboard[12][12] = {'-'}, sec_colores[NIVEL_A];
+    char nombre[11] = {'-'}, sec_colores[NIVEL_A];
     char diff, seguir = 's';
     int puntaje=0;
-    ranking leaderboard [3];
+    ranking player [3] = {0}; //ranking de jugadores
     bienvenida();
     while ((inicio)&&(seguir == 's' || seguir == 'S'))
     {
@@ -37,8 +37,5 @@ int main (int argc, char *argv[]) {
             }
         }
     };
-
-    
-
+return 0;
 }
- 
