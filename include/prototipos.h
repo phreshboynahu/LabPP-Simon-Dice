@@ -26,8 +26,8 @@ int iniSecuencia(char diff,char sec_colores[]);
 bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 
 //Si el puntaje actual supera al record del diff, actualiza el leaderboard
-void actualizarRecord(ranking *player, char nombre[], int puntaje);
+void actualizarRecord(ranking *player,char diff, char nombre[], int puntaje);
 
 // Muestra la tabla final con los mejores puntajes por nivel cuando se ingresa 'fin
-void finjuegofin();
+void finjuegofin(ranking player[]);
 #endif

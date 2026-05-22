@@ -13,8 +13,7 @@ int main (int argc, char *argv[]) {
     int puntaje=0;
     ranking player [3] = {0}; //ranking de jugadores
     bienvenida();
-    while ((inicio)&&(seguir == 's' || seguir == 'S'))
-    {
+    while ((inicio)&&(seguir == 's' || seguir == 'S')){
         puntaje = 0;
         inicio = inicioJuego(nombre, &diff);
         if (inicio){
@@ -26,8 +25,7 @@ int main (int argc, char *argv[]) {
                 else{
                     printf("Perdiste feo\n");
                 }
-            printf("Puntaje final: %d\n", puntaje);
-            //aca iria actualizarLeaderboard(nombre, puntaje, diff); y no eso de arriba grax
+            actualizarRecord(player, diff, nombre, puntaje);
             printf("Desea jugar otra partida? (s/n): ");
             scanf(" %c", &seguir);
             while ((seguir != 's' && seguir != 'S')&&(seguir != 'n' && seguir != 'N'))
@@ -36,6 +34,6 @@ int main (int argc, char *argv[]) {
                 scanf(" %c", &seguir);
             }
         }
-    };
-return 0;
+    }finjuegofin(player);
+    return 0;
 }

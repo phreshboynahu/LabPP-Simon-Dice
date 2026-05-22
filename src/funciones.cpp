@@ -197,7 +197,7 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
             system("clear");
         }
 
-        printf("Que colores salieron? (ingresa %d colores seguidos): \n", ronda);
+        printf("Que colores salieron? (ingresa %d colores seguidos en minuscula): \n", ronda);
 
         // lectura del ingreso
         for(int i = 0; i < ronda; i++){
@@ -220,31 +220,27 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
     return true; // osea si se paso el juego
 }
 void actualizarRecord(ranking player[], char diff, char nombre[], int puntaje) {
-    if (diff=='p' && diff=='P'){
+    if (diff=='p' || diff=='P'){
         if (player[0].puntaje < puntaje){    // dependiendo de diff comparar el puntaje actual.
             player[0].puntaje = puntaje;     // con 'leaderboard[posicion].puntaje' si es mayor  metele el nuevo nombre 
             strcpy(player[0].nombre, nombre);
     }
-}if (diff=='i' && diff=='I'){
+}if (diff=='i' || diff=='I'){
         if (player[1].puntaje < puntaje){
             player[1].puntaje = puntaje;
             strcpy(player[1].nombre, nombre);
     }
-}if (diff=='a' && diff=='A'){
+}if (diff=='a' || diff=='A'){
         if (player[2].puntaje < puntaje){
             player[2].puntaje = puntaje;
             strcpy(player[2].nombre, nombre);
     }
 }
 }
-
-ranking player
 void finjuegofin(ranking player[]){
-    if (inicioJuego==false){
         printf("Resultados del juego:\n");
         printf("\tPrincipiante: %9s %d puntos\n",player[0].nombre, player[0].puntaje);
         printf("\tIntermedio: %9s %d puntos\n",player[1].nombre, player[1].puntaje);
         printf("\tAvanzado: %9s %d puntos\n",player[2].nombre, player[2].puntaje);
-    }
 }
 
