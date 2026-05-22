@@ -1,7 +1,7 @@
 #ifndef PROTOTIPOS_H
 #define PROTOTIPOS_H
 //aca metemos todos los datos del jugador
-struct jugador{
+struct ranking{
     char nombre[11];
     int puntaje;
 };

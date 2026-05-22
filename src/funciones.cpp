@@ -114,7 +114,7 @@ bool inicioJuego(char nombre[], char *diff){
 }
 
 int iniSecuencia(char diff, char sec_colores[]){
-
+    
     int n=0;
 
     // r = rojo, a = azul, v = verde, etc.
@@ -203,7 +203,7 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
         for(int i = 0; i < ronda; i++){
             ingreso[i] = getchar();
         }
-        getchar(); // limpia el buffer ahi por las dudas ni idea
+        getchar(); // limpia el salto de linea en el buffer
 
         // chequeamos coincidencias
         for (int b = 0; b < ronda; b++){
