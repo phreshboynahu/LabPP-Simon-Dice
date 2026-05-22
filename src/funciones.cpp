@@ -219,6 +219,11 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
     }
     return true; // osea si se paso el juego
 }
+void actualizarRecord(ranking leaderboard[], char diff, char nombre[], int puntaje) {
+    // dependiendo de diff comparar el puntaje actual 
+    // con 'leaderboard[posicion].puntaje' si es mayor  metele el nuevo nombre 
+}
+
 //void finjuegofin(){ //aguantarse las papas hasta el martes para terminar esto
     //if (inicioJuego==false){
         //printf("Resultados del juego:\n");

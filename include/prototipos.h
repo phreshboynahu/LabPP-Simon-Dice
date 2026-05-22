@@ -25,9 +25,9 @@ int iniSecuencia(char diff,char sec_colores[]);
 //Mostramos la secuencia, usando la diff. para definir su duracion en pantalla.
 bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 
-//Actualizamos la tabla de puntajes.
+//Si el puntaje actual supera al record del diff, actualiza el leaderboard
 void actualizarRecord(ranking *leaderboard, char nombre[], int puntaje);
 
-//En caso que se ingrese como nombre de jugador ‘fin’ ingresar el nombre y los puntos del jugador que mas puntaje obtuvo por dificultad.
+// Muestra la tabla final con los mejores puntajes por nivel cuando se ingresa 'fin
 void finjuegofin();
 #endif
