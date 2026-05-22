@@ -1,25 +1,33 @@
 #ifndef PROTOTIPOS_H
 #define PROTOTIPOS_H
-void bienvenida();
+//aca metemos todos los datos del jugador
+struct jugador{
+    char nombre[11];
+    int puntaje;
+};
+
 //Mensaje de bienvenida al juego.
+void bienvenida();
 
-bool inicioJuego (char nombre[],char &diff);
-//Inicio los valores del juego y solicito si el usuario desea jugar y el importe con que arranca.
+//Pide el nombre y la dificultad al usuario
+bool pedirNombre(char nombre[]);
+char pedirDificultad();
 
-//float apuesta(float importeFinal);
-//Solicitar el valor de la apuesta. Se debe controlar queno supere el importe existe.
+//Espera el enter para jugar.
+void esperarEnter();
 
-//int apostado();
-//Solicitar el numero al que desea apostar, controlar que este entre 1 y 6.
+//Condiciona el inicio del juego.
+bool inicioJuego(char nombre[], char *diff);
 
-//void juego(float &importeFinal, int &cantidadJugadas, int &aciertos, float valorApuesta, int nroApostado);
-//Proceso del juego propiamente dicho. 
-//Se debe generar el numero del dado al azar, comparar y determinar si gana o pierde.
+//Inicializamos la secuencia, usando la diff. para definir su lengitud.
+int iniSecuencia(char diff,char sec_colores[]);
 
-//bool sigueJugando(float importefinal, int cantidadJugadas);
-//Preguntar si continua jugando.No olvidar que al menos se deben jugar 5 partidas.
+//Mostramos la secuencia, usando la diff. para definir su duracion en pantalla.
+bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 
-//void informe(float importeInicial, int cantidadJugadas, int aciertos, float importeFinal);
-//Muestra el resultado de la partida.
+//Actualizamos la tabla de puntajes.
+void actualizarRecord(jugador *mejor, char nombre[], int puntaje);
 
+//En caso que se ingrese como nombre de jugador ‘fin’ ingresar el nombre y los puntos del jugador que mas puntaje obtuvo por dificultad.
+void finjuegofin();
 #endif
