@@ -35,7 +35,6 @@ int main (int argc, char *argv[]) {
                 printf("Debe ingresar S(s) o N(n). Vuelva a intentarlo");
                 scanf(" %c", &seguir);
             }
-            
         }
     };
 

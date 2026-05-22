@@ -26,7 +26,7 @@ int iniSecuencia(char diff,char sec_colores[]);
 bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 
 //Actualizamos la tabla de puntajes.
-void actualizarRecord(jugador *mejor, char nombre[], int puntaje);
+void actualizarRecord(ranking *leaderboard, char nombre[], int puntaje);
 
 //En caso que se ingrese como nombre de jugador ‘fin’ ingresar el nombre y los puntos del jugador que mas puntaje obtuvo por dificultad.
 void finjuegofin();

@@ -114,7 +114,7 @@ bool inicioJuego(char nombre[], char *diff){
 }
 
 int iniSecuencia(char diff, char sec_colores[]){
-    
+
     int n=0;
 
     // r = rojo, a = azul, v = verde, etc.
@@ -207,17 +207,13 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
 
         // chequeamos coincidencias
         for (int b = 0; b < ronda; b++){
-            if(ingreso[b] == sec_colores[b]){
-                *puntaje += puntosPorAcierto;
-            }
-            else if (ingreso[b] != sec_colores[b])
-            {
-                printf("Le erraste feo firme te digo pariente te sacaste: %d\n", *puntaje);
+            if(ingreso[b] != sec_colores[b]){
+                printf("Perdiste... (╥﹏╥)\n");
                 return false; // game over
             }
-            
         }
-        printf("Acertaste! Puntaje hasta ahora: %d\n", *puntaje);
+        *puntaje += puntosPorAcierto;
+        printf("Acertaste!(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Puntaje hasta ahora: %d\n", *puntaje);
         sleep(2);
         system("clear");
     }
@@ -231,74 +227,5 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
         //printf("\tIntermedio: %9s puntos\n",);
         //printf("\tAvanzado: %9s puntos\n",);
     //}
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Proceso del juego propiamente dicho. 
-
-//Se debe generar la secuencia y mostrarsela al jugador, luego pegarte un tiro
-//void juego(float &importeFinal, int &cantidadJugadas, int &aciertos, float valorApuesta, int nroApostado){
-    //char secuencia[6]={'-'};
-        //printf(" ¡GANASTE! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\n");
-        //printf(" Perdiste... (╥﹏╥)\n");
-    
-//}
-
-//Preguntar si continua jugando.No olvidar que al menos se deben jugar 5 partidas.
-//bool sigueJugando(float importeFinal, int cantidadJugadas){
-    //char seguir;
-
-    //if(cantidadJugadas % 5 == 0 && importeFinal>0){
-        //printf("\n¿Querés seguir jugando? (S/N): ");
-        //scanf(" %c", &seguir);
-
-        //if (seguir == 'S'|| seguir == 's'){
-        //    return true;
-        //}else{
-          //  return false;
-        //}
-    //}
-        
-    //if(importeFinal == 0){
-      //  return false;
-    //}
-    //return true;
- //}
-
-//Muestra el resultado de la partida.
-//void informe(float importeInicial, int cantidadJugadas, int aciertos, float importeFinal){
-    //printf("Presione cualquier tecla para continuar...");
-    //getchar();
-    //getchar();
-    //system("clear");
-    //printf("\n=====================================\n");
-    //printf("            RESULTADOS  \n");
-    //printf("=====================================\n");
-
-    //printf("Dinero inicial: $%.2f\n", importeInicial);
-    //printf("Cantidad de jugadas: %d\n", cantidadJugadas);
-    //printf("Aciertos: %d \n", aciertos);
-    //printf("Errores: %d \n", cantidadJugadas - aciertos);
-    //printf("Dinero final: $%.2f\n", importeFinal);
 //}
 
