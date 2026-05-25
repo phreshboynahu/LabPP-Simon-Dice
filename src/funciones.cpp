@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string.h>
 #include<unistd.h>
+
 // niveles (largo de secuencia)
 #define NIVEL_P 6
 #define NIVEL_I 8
@@ -29,7 +30,7 @@ bool pedirNombre (char nombre[]){
 
     do
     {
-        int i=0; // contador de letras, tampoco nos vamos a escribir la biblia
+        int i=0; // contador de letras
         printf("\nIngrese su nombre (fin=fin del Juego): ");
 
         // vamos guardando letra por letra hasta enter
@@ -46,7 +47,7 @@ bool pedirNombre (char nombre[]){
         if (i == 0) {
             printf("Debe ingresar nombre del Jugador o fin para finalizar el juego. Vuelva a intentarlo\n");
         } 
-        // palabra magica para rajar del juego
+        // palabra magica para salir del juego
         else if (strcmp(nombre, "fin") == 0) {
             return false;
         } 
@@ -73,7 +74,7 @@ char pedirDificultad(){
            diff!='i' && diff!='I' &&
            diff!='a' && diff!='A'){
 
-            printf("Nivel del juego no es válido. Vuelva a intentarlo.\n");
+            printf("Nivel del juego no es valido. Vuelva a intentarlo.\n");
         }
 
     }while(diff!='p' && diff!='P' &&
@@ -193,7 +194,7 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
             printf("|\t%c\t|\n", sec_colores[b]);
             sleep(segundos);
 
-            // limpia pantalla pero solo en linux ojooooo
+            // limpia pantalla pero solo en linux
             system("clear");
         }
 
@@ -208,34 +209,43 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
         // chequeamos coincidencias
         for (int b = 0; b < ronda; b++){
             if(ingreso[b] != sec_colores[b]){
-                printf("Perdiste... (╥﹏╥)\n");
+                printf("Perdiste... :( \n");
                 return false; // game over
             }
         }
         *puntaje += puntosPorAcierto;
-        printf("Acertaste!(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Puntaje hasta ahora: %d\n", *puntaje);
+        printf("Acertaste! :) Puntaje hasta ahora: %d\n", *puntaje);
         sleep(2);
         system("clear");
     }
     return true; // osea si se paso el juego
 }
-void actualizarRecord(ranking player[], char diff, char nombre[], int puntaje) {
-    if (diff=='p' || diff=='P'){
-        if (player[0].puntaje < puntaje){    // dependiendo de diff comparar el puntaje actual.
-            player[0].puntaje = puntaje;     // con 'leaderboard[posicion].puntaje' si es mayor  metele el nuevo nombre 
-            strcpy(player[0].nombre, nombre);
-    }
-}if (diff=='i' || diff=='I'){
-        if (player[1].puntaje < puntaje){
-            player[1].puntaje = puntaje;
-            strcpy(player[1].nombre, nombre);
-    }
-}if (diff=='a' || diff=='A'){
-        if (player[2].puntaje < puntaje){
-            player[2].puntaje = puntaje;
-            strcpy(player[2].nombre, nombre);
+
+void copiarNom(char destino[], char origen[]){ //basicamente pasa caracter por caracter de un array a otro
+    int i = strlen(origen);
+	while(i >= 0){
+        destino[i] = origen[i];
+        i--;
     }
 }
+
+void actualizarRecord(ranking player[], char diff, char nombre[], int puntaje) {
+    if (diff=='p' || diff=='P'){			// dependiendo de diff comparar el puntaje actual.
+        if (player[0].puntaje < puntaje){   // con "player[posicion].puntaje" si es menor se sobreescribe con el nuevo nombre y puntaje
+            player[0].puntaje = puntaje;     
+            copiarNom(player[0].nombre, nombre);
+    	}
+	}if (diff=='i' || diff=='I'){
+        if (player[1].puntaje < puntaje){
+            player[1].puntaje = puntaje;
+            copiarNom(player[1].nombre, nombre);
+    	}
+	}if (diff=='a' || diff=='A'){
+        if (player[2].puntaje < puntaje){
+            player[2].puntaje = puntaje;
+            copiarNom(player[2].nombre, nombre);
+    	}
+	}
 }
 void finjuegofin(ranking player[]){
         printf("Resultados del juego:\n");
