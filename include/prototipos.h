@@ -25,6 +25,9 @@ int iniSecuencia(char diff,char sec_colores[]);
 //Mostramos la secuencia, usando la diff. para definir su duracion en pantalla.
 bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 
+//funcion para copiar el nombre desde el array suelto hacia el struct del ranking
+void copiarNom(char destino[], char origen[]){ 
+
 //Si el puntaje actual supera al record del diff, actualiza el leaderboard
 void actualizarRecord(ranking *player,char diff, char nombre[], int puntaje);
 
