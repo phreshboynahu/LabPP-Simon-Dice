@@ -14,16 +14,16 @@
 #define ACIERTO_NIVEL_P 1
 #define ACIERTO_NIVEL_I 3
 #define ACIERTO_NIVEL_A 5
-//aca metemos todos los datos del jugador
+//Datos de los jugadores en el ranking
 struct ranking{
     char nombre[10]={'-'};
-    int puntaje;
+    int puntaje = 0;
 };
 
 //Mensaje de bienvenida al juego.
 void bienvenida();
 
-//Pide el nombre y la dificultad al usuario
+//Pide el nombre y la dificultad al usuario.
 bool pedirNombre(char nombre[]);
 char pedirDificultad();
 
@@ -42,12 +42,12 @@ bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 //funcion para copiar el nombre desde el array suelto hacia el struct del ranking
 void copiarNom(char destino[], char origen[]);
 
-//convierte carateres hacia minuscula (Ej. 'V' hacia 'v' para que no se asuste el comparador de arreglos)
+//Convierte carateres hacia minuscula. (Ej. 'V' hacia 'v' para que no se asuste el comparador de arreglos)
 char convMinusc(char c);
 
-//Si el puntaje actual supera al record del diff, actualiza el leaderboard
+//Si el puntaje actual supera al record del diff, actualiza el leaderboard.
 void actualizarRecord(ranking *player,char diff, char nombre[], int puntaje);
 
-// Muestra la tabla final con los mejores puntajes por nivel cuando se ingresa 'fin
+// Muestra la tabla final con los mejores puntajes por nivel cuando se ingresa 'fin'.
 void finjuegofin(ranking player[]);
 #endif
