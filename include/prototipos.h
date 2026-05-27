@@ -1,8 +1,22 @@
 #ifndef PROTOTIPOS_H
 #define PROTOTIPOS_H
+// niveles (largo de secuencia)
+#define NIVEL_P 6
+#define NIVEL_I 8
+#define NIVEL_A 10
+
+// tiempos por nivel
+#define TIEMPO_COLOR_P 3
+#define TIEMPO_COLOR_I 2
+#define TIEMPO_COLOR_A 1
+
+// puntaje por acierto
+#define ACIERTO_NIVEL_P 1
+#define ACIERTO_NIVEL_I 3
+#define ACIERTO_NIVEL_A 5
 //aca metemos todos los datos del jugador
 struct ranking{
-    char nombre[11];
+    char nombre[10]={'-'};
     int puntaje;
 };
 
@@ -26,7 +40,10 @@ int iniSecuencia(char diff,char sec_colores[]);
 bool mostrarSecuencia(char diff,char sec_colores[], int *puntaje, int n);
 
 //funcion para copiar el nombre desde el array suelto hacia el struct del ranking
-void copiarNom(char destino[], char origen[]){ 
+void copiarNom(char destino[], char origen[]);
+
+//convierte carateres hacia minuscula (Ej. 'V' hacia 'v' para que no se asuste el comparador de arreglos)
+char convMinusc(char c);
 
 //Si el puntaje actual supera al record del diff, actualiza el leaderboard
 void actualizarRecord(ranking *player,char diff, char nombre[], int puntaje);
