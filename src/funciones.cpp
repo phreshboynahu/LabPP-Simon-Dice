@@ -18,9 +18,9 @@ bool pedirNombre (char nombre[]){
     {
         int i=0; // contador de letras
         printf("\nIngrese su nombre (fin=fin del Juego): ");
-        //getchar();
-        // codigo viejo q usaba getchar y guardaba basura de algun lado
-        /*while ((c = getchar()) != '\n'){
+        /*getchar();
+        // codigo viejo q usaba getchar y guardaba basura
+        while ((c = getchar()) != '\n'){
             {   
                 if(i < 9){
                     nombre[i]= c;
@@ -82,8 +82,7 @@ void esperarEnter(){
     {
         printf("\nPulse <enter> para comenzar el juego");
 
-        // limpiamos buffer porque esta tomando un enter de otro lado (?)
-        getchar();
+        __fpurge(stdin);
 
         enter = getchar();
 
@@ -108,7 +107,7 @@ int iniSecuencia(char diff, char sec_colores[]){
 
     int n=0; //largo de secuencia.
 
-    // r = rojo, a = azul, v = verde, etc.
+    // ajustes acorde la dificultad
     switch (diff){ 
 
         case 'P':
@@ -126,7 +125,7 @@ int iniSecuencia(char diff, char sec_colores[]){
             n=NIVEL_A;
             break;
     }
-
+    // r = rojo, a = azul, v = verde, etc.
     // generamos la secuencia random de colores
     for (int i = 0; i < n; i++) {
 
@@ -152,7 +151,7 @@ int iniSecuencia(char diff, char sec_colores[]){
     return n;
 }
 
-char convMinusc(char c){
+char convMinusc(char c){ //le suma 32 a las letras ascii mayuscula para que sean minuscula
     if(c >= 65 && c <= 90){
         c = c + 32;
     }
@@ -203,11 +202,11 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
             printf("\nCual fue el color %d?: ", i+1);
             scanf(" %c", &ingreso[i]);
             ingreso[i] = convMinusc(ingreso[i]);
-            if(ingreso[i] != sec_colores[i]){// chequeamos coincidencias
+            if(ingreso[i] != sec_colores[i]){ // chequeamos coincidencias
                 system("clear");
                 return false; // game over
             }
-            //printf("ingreso[%d]=%c | sec[%d]=%c\n", i, ingreso[i], i, sec_colores[i]);//debug, muestra valores
+            //printf("ingreso[%d]=%c | sec[%d]=%c\n", i, ingreso[i], i, sec_colores[i]); // debug, muestra valores
             system("clear");
         }
         *puntaje += puntosPorAcierto;;

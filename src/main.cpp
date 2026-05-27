@@ -11,7 +11,7 @@ int main (int argc, char *argv[]) {
     char nombre[10] = {' '}, sec_colores[NIVEL_A];//nombre[10] es el array del jugador actual y sec_colores es la secuencia
     char diff, seguir = 's';
     int puntaje=0;//puntaje de jugador actual
-    ranking player [3]; //ranking de jugadores
+    ranking player [3]; //ranking de jugadores (1 por dificultad)
     bienvenida();
     while ((inicio)&&(seguir == 's' || seguir == 'S')){
         puntaje = 0;
