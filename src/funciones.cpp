@@ -1,21 +1,9 @@
 #include<iostream>
 #include<string.h>
 #include<unistd.h>
+#include<stdio_ext.h>
+#include"prototipos.h"
 
-// niveles (largo de secuencia)
-#define NIVEL_P 6
-#define NIVEL_I 8
-#define NIVEL_A 10
-
-// tiempos por nivel
-#define TIEMPO_COLOR_P 3
-#define TIEMPO_COLOR_I 2
-#define TIEMPO_COLOR_A 1
-
-// puntaje por acierto
-#define ACIERTO_NIVEL_P 1
-#define ACIERTO_NIVEL_I 3
-#define ACIERTO_NIVEL_A 5
 using namespace std;
 
 // mensajito de bienvenida bien tranqui
@@ -24,37 +12,45 @@ void bienvenida(){
 }
 
 bool pedirNombre (char nombre[]){
-    
     char c; 
     bool valido = false;
-
+    /*if(*largoNom > 0){
+        for (int i = 0; i < *largoNom; i++)
+        {
+            nombre[i] = ' ';
+        }
+    }*/
     do
     {
         int i=0; // contador de letras
         printf("\nIngrese su nombre (fin=fin del Juego): ");
-
+        //getchar();
         // vamos guardando letra por letra hasta enter
-        while ((c = getchar()) != '\n'){
+        /*while ((c = getchar()) != '\n'){
             {   
                 if(i < 9){
                     nombre[i]= c;
                     i++;
                 }   
             }
+        }*/
+        __fpurge(stdin);
+        scanf("%[^ \n]", nombre);
+        __fpurge(stdin);
+        while ((strlen(nombre)==1))
+        {
+            printf("Debe ingresar nombre del Jugador o fin para finalizar el juego. Vuelva a intentarlo\n");
+            scanf("%[^ \n]", nombre);
+            __fpurge(stdin);
         }
 
-
-        if (i == 0) {
-            printf("Debe ingresar nombre del Jugador o fin para finalizar el juego. Vuelva a intentarlo\n");
-        } 
         // palabra magica para salir del juego
-        else if (strcmp(nombre, "fin") == 0) {
+        if (strcmp(nombre, "fin") == 0) {
             return false;
         } 
         else {
             valido = true;
         }
-
     } while (!valido);
 
      return true;
@@ -162,10 +158,18 @@ int iniSecuencia(char diff, char sec_colores[]){
     return n;
 }
 
+char convMinusc(char c){
+    if(c >= 'A' && c <= 'Z'){
+        c = c + 32;
+    }
+
+    return c;
+}
+
 bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
     int segundos, ronda=0;
 
-    char ingreso[11]={' '};
+    char ingreso[NIVEL_A+1]={' '};
     int puntosPorAcierto;
     switch (diff)
     {
@@ -191,6 +195,8 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
     for (int ronda = 1; ronda <= n; ronda++){
 
         for (int b = 0; b < ronda; b++){
+            system("clear");
+            printf("Color numero %d\n", b+1);
             printf("|\t%c\t|\n", sec_colores[b]);
             sleep(segundos);
 
@@ -198,32 +204,33 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
             system("clear");
         }
 
-        printf("Que colores salieron? (ingresa %d colores seguidos en minuscula): \n", ronda);
+        //printf("Que colores salieron? (ingresa %d colores en minuscula): \n", ronda);
 
         // lectura del ingreso
-        for(int i = 0; i < ronda; i++){
-            ingreso[i] = getchar();
+        for(int i = 0; i < ronda; i++){;
+            printf("\nCual fue el color %d?: ", i+1);
+            __fpurge(stdin);
+            ingreso[i] = convMinusc(getchar());
+            system("clear");
         }
         getchar(); // limpia el salto de linea en el buffer
 
         // chequeamos coincidencias
         for (int b = 0; b < ronda; b++){
             if(ingreso[b] != sec_colores[b]){
-                printf("Perdiste... :( \n");
                 return false; // game over
             }
         }
-        *puntaje += puntosPorAcierto;
-        printf("Acertaste! :) Puntaje hasta ahora: %d\n", *puntaje);
-        sleep(2);
+        *puntaje += puntosPorAcierto;;
         system("clear");
     }
+    printf("Perdiste... :( \n");
     return true; // osea si se paso el juego
 }
 
 void copiarNom(char destino[], char origen[]){ //basicamente pasa caracter por caracter de un array a otro
     int i = strlen(origen);
-	while(i >= 0){
+    while(i >= 0){
         destino[i] = origen[i];
         i--;
     }
@@ -249,8 +256,7 @@ void actualizarRecord(ranking player[], char diff, char nombre[], int puntaje) {
 }
 void finjuegofin(ranking player[]){
         printf("Resultados del juego:\n");
-        printf("\tPrincipiante: %9s %d puntos\n",player[0].nombre, player[0].puntaje);
-        printf("\tIntermedio: %9s %d puntos\n",player[1].nombre, player[1].puntaje);
-        printf("\tAvanzado: %9s %d puntos\n",player[2].nombre, player[2].puntaje);
+        printf("\tPrincipiante: %s %d puntos\n",player[0].nombre, player[0].puntaje);
+        printf("\tIntermedio: %s %d puntos\n",player[1].nombre, player[1].puntaje);
+        printf("\tAvanzado: %s %d puntos\n",player[2].nombre, player[2].puntaje);
 }
-

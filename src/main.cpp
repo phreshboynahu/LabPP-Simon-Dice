@@ -8,7 +8,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
     srand(time(NULL));
     bool inicio = true, gano;
-    char nombre[11] = {'-'}, sec_colores[NIVEL_A];
+    char nombre[11] = {' '}, sec_colores[NIVEL_A];
     char diff, seguir = 's';
     int puntaje=0;
     ranking player [3] = {0}; //ranking de jugadores
@@ -19,12 +19,12 @@ int main (int argc, char *argv[]) {
         if (inicio){
             int n = iniSecuencia(diff, sec_colores);
             gano = mostrarSecuencia(diff, sec_colores, &puntaje, n);
-                if(gano){
-                    printf("Ganaste capo\n");
-                }
-                else{
-                    printf("Perdiste feo\n");
-                }
+            if(gano = false){
+                printf("Perdiste... :( \n");
+            }
+            else{
+                printf("Ganaste... :D \n");
+            }
             actualizarRecord(player, diff, nombre, puntaje);
             printf("Desea jugar otra partida? (s/n): ");
             scanf(" %c", &seguir);
