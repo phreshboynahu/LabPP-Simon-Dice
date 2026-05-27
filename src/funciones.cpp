@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// mensajito de bienvenida bien tranqui
+// mensajito de bienvenida
 void bienvenida(){ 
     printf("Bienvenido al Juego de SIMON ver. 1.0.");
 }
@@ -14,18 +14,12 @@ void bienvenida(){
 bool pedirNombre (char nombre[]){
     char c; 
     bool valido = false;
-    /*if(*largoNom > 0){
-        for (int i = 0; i < *largoNom; i++)
-        {
-            nombre[i] = ' ';
-        }
-    }*/
     do
     {
         int i=0; // contador de letras
         printf("\nIngrese su nombre (fin=fin del Juego): ");
         //getchar();
-        // vamos guardando letra por letra hasta enter
+        // codigo viejo q usaba getchar y guardaba basura de algun lado
         /*while ((c = getchar()) != '\n'){
             {   
                 if(i < 9){
@@ -159,7 +153,7 @@ int iniSecuencia(char diff, char sec_colores[]){
 }
 
 char convMinusc(char c){
-    if(c >= 'A' && c <= 'Z'){
+    if(c >= 65 && c <= 90){
         c = c + 32;
     }
 
@@ -204,28 +198,22 @@ bool mostrarSecuencia(char diff,char sec_colores[],int *puntaje, int n){
             system("clear");
         }
 
-        //printf("Que colores salieron? (ingresa %d colores en minuscula): \n", ronda);
-
         // lectura del ingreso
         for(int i = 0; i < ronda; i++){;
             printf("\nCual fue el color %d?: ", i+1);
-            __fpurge(stdin);
-            ingreso[i] = convMinusc(getchar());
-            system("clear");
-        }
-        getchar(); // limpia el salto de linea en el buffer
-
-        // chequeamos coincidencias
-        for (int b = 0; b < ronda; b++){
-            if(ingreso[b] != sec_colores[b]){
+            scanf(" %c", &ingreso[i]);
+            ingreso[i] = convMinusc(ingreso[i]);
+            if(ingreso[i] != sec_colores[i]){// chequeamos coincidencias
+                system("clear");
                 return false; // game over
             }
+            //printf("ingreso[%d]=%c | sec[%d]=%c\n", i, ingreso[i], i, sec_colores[i]);//debug, muestra valores
+            system("clear");
         }
         *puntaje += puntosPorAcierto;;
         system("clear");
     }
-    printf("Perdiste... :( \n");
-    return true; // osea si se paso el juego
+    return true; // solo cuando se paso el juego
 }
 
 void copiarNom(char destino[], char origen[]){ //basicamente pasa caracter por caracter de un array a otro
